@@ -53,30 +53,53 @@ void create(std::string partialWord, const std::string& in, std::string floating
   }
   else // this will cqtch when its bnlank and we have got to fill it
   {
+    // ok this is taking too long im circling through all the letters when i shouldnt be 
     std::set<char>openLetters;
-    
-    //if(floating.size() > 0) // we have to start with these letters first
-    //{
-    for(char c : floating)
+    int blanks = 0;
+    for(size_t i = position; i < in.size(); ++i)
     {
-      openLetters.insert(c);
-    }
-    // then try all the other letters
-    //if((int)(in.size()- position) > (int)floating.size())
-    if((in.size() - position) > floating.size())
-    {
-      for(char a = 'a'; a <= 'z'; ++a)
+      if(in[i] == '-')
       {
-        openLetters.insert(a);
+        blanks++;
       }
     }
-    if(floating.empty())
+    if((int)floating.size() == blanks)
     {
-      for(char c = 'a'; c <= 'z'; ++c)
+      for(char c : floating)
       {
         openLetters.insert(c);
       }
     }
+    else
+    {
+      for(char a = 'a'; a<='z'; ++a)
+      {
+        openLetters.insert(a);
+      }
+    }
+    
+    //if(floating.size() > 0) // we have to start with these letters first
+    //{
+   // for(char c : floating)
+    //{
+     // openLetters.insert(c);
+   // }
+    // then try all the other letters
+    //if((int)(in.size()- position) > (int)floating.size())
+    //if((in.size() - position) > floating.size())
+    //{
+     //for(char a = 'a'; a <= 'z'; ++a)
+     // {
+     //   openLetters.insert(a);
+      //}
+    //}
+    //if(floating.empty())
+    //{
+      //for(char c = 'a'; c <= 'z'; ++c)
+      //{
+       // openLetters.insert(c);
+     // }
+    //}
    // else
    //{
     //  for(char a = 'a'; a<= 'z'; ++a)
